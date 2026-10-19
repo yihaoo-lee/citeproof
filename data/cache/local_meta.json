@@ -1,0 +1,32 @@
+{
+  "2005.11401v4": {
+    "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+    "year": 2020,
+    "source": "arxiv",
+    "mtime": 1792239130.693785
+  },
+  "2023.emnlp-main.397": {
+    "title": "HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models",
+    "year": 2023,
+    "source": "aclanthology",
+    "mtime": 1792239417.2067606
+  },
+  "2023.emnlp-main.495": {
+    "title": "Active Retrieval Augmented Generation",
+    "year": 2023,
+    "source": "aclanthology",
+    "mtime": 1792239214.9790196
+  },
+  "2303.08896v3": {
+    "title": "SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models",
+    "year": 2023,
+    "source": "arxiv",
+    "mtime": 1792239462.44743
+  },
+  "2401.15884v3": {
+    "title": "Corrective Retrieval Augmented Generation",
+    "year": 2024,
+    "source": "arxiv",
+    "mtime": 1792239355.222808
+  }
+}

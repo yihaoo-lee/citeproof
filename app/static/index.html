@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>有据 CiteProof — 可验证的文献证据矩阵</title>
+  <link rel="stylesheet" href="/static/style.css?v=14">
+</head>
+<body>
+  <header>
+    <div class="brand">有据 · <span>CiteProof</span></div>
+    <div class="sub">可验证的文献证据矩阵</div>
+    <div class="head-right">
+      <div id="health" class="health">检查中…</div>
+      <button id="theme-btn" class="ghost">浅色</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="card hero">
+      <h1>读文献，只信有据可查的结论</h1>
+      <p class="hero-sub">自动检索论文，AI 抽取结论并逐字校验，核不上原文不上屏</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-t">检索论文</div></div>
+        <div class="arrow">→</div>
+        <div class="step"><div class="step-num">2</div><div class="step-t">AI 抽取 + 逐字校验</div></div>
+        <div class="arrow">→</div>
+        <div class="step"><div class="step-num">3</div><div class="step-t">证据矩阵 · 点格子看原文</div></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="search-row">
+        <input id="query" placeholder="输入研究问题（中英文均可）" />
+        <select id="sort">
+          <option value="relevance" selected>相关度</option>
+          <option value="date">最新发表</option>
+          <option value="cited">被引最多</option>
+        </select>
+        <select id="limit">
+          <option value="5">5 篇</option>
+          <option value="8">8 篇</option>
+          <option value="12">12 篇</option>
+          <option value="custom">自定义</option>
+        </select>
+        <input type="number" id="custom-limit" min="1" max="20" value="10" class="hidden" />
+        <button id="search-btn">检索</button>
+        <button id="local-btn">本地 PDF</button>
+        <button id="upload-btn">上传 PDF</button>
+        <button id="demo-btn">离线演示</button>
+        <input type="file" id="file-input" multiple accept="application/pdf" class="hidden" />
+      </div>
+      <div id="examples" class="examples"></div>
+      <div id="toolbar" class="toolbar hidden">
+        <label class="toggle-label"><input type="checkbox" id="fulltext-only" /> 只看有全文</label>
+        <div class="actions">
+          <button id="analyze-btn" class="primary">生成证据矩阵</button>
+          <button id="toggle-all" class="ghost">全选/清空</button>
+        </div>
+        <span id="selection-hint" class="hint"></span>
+      </div>
+      <div id="results" class="results hidden"></div>
+      <div id="pager" class="pager hidden"></div>
+      <div id="status" class="status"></div>
+    </section>
+
+    <section class="card hidden" id="stats-card">
+      <div class="stats">
+        <div class="stat"><div class="num" id="s-papers">-</div><div class="lab">论文数</div></div>
+        <div class="stat"><div class="num" id="s-hit">-</div><div class="lab">可追溯率</div></div>
+        <div class="stat"><div class="num" id="s-discard">-</div><div class="lab">丢弃率</div></div>
+        <div class="stat"><div class="num" id="s-support">-</div><div class="lab">支持率（模型判定）</div></div>
+        <div class="stat"><div class="num" id="s-complete">-</div><div class="lab">字段完整率</div></div>
+      </div>
+      <div id="funnel" class="funnel"></div>
+      <div class="export-row">
+        <button class="ghost" data-fmt="csv" disabled>导出 CSV</button>
+        <button class="ghost" data-fmt="xlsx" disabled>导出 XLSX</button>
+        <button class="ghost" data-fmt="docx" disabled>导出 DOCX</button>
+      </div>
+    </section>
+
+    <section class="card hidden" id="matrix-card">
+      <div id="synthesis" class="synthesis"></div>
+      <div class="table-wrap"><table id="matrix"></table></div>
+    </section>
+  </main>
+
+  <div id="mask" class="mask hidden"></div>
+  <aside id="drawer" class="drawer hidden">
+    <div class="drawer-head">
+      <span id="drawer-title"></span>
+      <button id="drawer-close" class="ghost">×</button>
+    </div>
+    <div id="drawer-body"></div>
+  </aside>
+
+  <script src="/static/app.js?v=14"></script>
+</body>
+</html>
