@@ -45,6 +45,13 @@ function setStatus(msg, isError, retry) {
   }
 }
 
+function setDegradeStatus(msg) {
+  const status = $("status");
+  status.classList.remove("error");
+  status.classList.add("degrade");
+  status.textContent = msg;
+}
+
 async function health() {
   try {
     const h = await api("/api/health");
@@ -198,7 +205,11 @@ async function analyze() {
     currentJobId = resp.job_id;
     renderMatrix();
     const failures = matrix.rows.filter((row) => ["scanned_or_empty", "download_failed", "failed"].some((s) => (row.parse_status || "").startsWith(s))).length;
-    setStatus(failures ? `完成；${failures} 篇 PDF 下载或解析失败，结果可能仅基于摘要` : "完成", !!failures);
+    if (failures) {
+      setDegradeStatus(`完成；${failures} 篇 PDF 下载或解析失败，结果可能仅基于摘要`);
+    } else {
+      setStatus("完成");
+    }
   } catch (e) {
     setStatus(e.message, true, !!e.retryable);
   } finally {
