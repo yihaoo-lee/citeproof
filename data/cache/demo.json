@@ -6,7 +6,7 @@
       "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
       "year": 2020,
       "source": "upload",
-      "pdf_path": "data/papers/2005.11401v4.pdf",
+      "pdf_path": "data\\papers\\2005.11401v4.pdf",
       "has_fulltext": true
     },
     {
@@ -14,7 +14,7 @@
       "title": "HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models",
       "year": 2023,
       "source": "upload",
-      "pdf_path": "data/papers/2023.emnlp-main.397.pdf",
+      "pdf_path": "data\\papers\\2023.emnlp-main.397.pdf",
       "has_fulltext": true
     },
     {
@@ -22,7 +22,7 @@
       "title": "Active Retrieval Augmented Generation",
       "year": 2023,
       "source": "upload",
-      "pdf_path": "data/papers/2023.emnlp-main.495.pdf",
+      "pdf_path": "data\\papers\\2023.emnlp-main.495.pdf",
       "has_fulltext": true
     },
     {
@@ -30,7 +30,7 @@
       "title": "SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models",
       "year": 2023,
       "source": "upload",
-      "pdf_path": "data/papers/2303.08896v3.pdf",
+      "pdf_path": "data\\papers\\2303.08896v3.pdf",
       "has_fulltext": true
     },
     {
@@ -38,13 +38,13 @@
       "title": "Corrective Retrieval Augmented Generation",
       "year": 2024,
       "source": "upload",
-      "pdf_path": "data/papers/2401.15884v3.pdf",
+      "pdf_path": "data\\papers\\2401.15884v3.pdf",
       "has_fulltext": true
     }
   ],
   "matrix": {
     "query": "（本地 PDF 上传分析）",
-    "generated_at": "2026-10-18 17:43:21",
+    "generated_at": "2026-10-22 15:03:31",
     "rows": [
       {
         "paper_id": "local:2005.11401v4",
@@ -54,23 +54,23 @@
         "parse_status": "uploaded",
         "stub_reason": "",
         "fields": {
-          "problem": "大预训练模型存储事实知识但难以精确访问和更新，知识密集型任务性能落后于专用架构。",
+          "problem": "预训练语言模型难以访问和精确操作知识，在知识密集型任务上落后于专用架构，且无法提供溯源和更新知识。",
           "method": "提出RAG，结合预训练seq2seq参数记忆与Wikipedia稠密向量索引非参数记忆，用神经检索器访问，比较两种生成公",
           "dataset": "在开放域QA（Natural Questions、TriviaQA、WebQuestions、CuratedTrec）、",
-          "conclusion": "在三个开放域QA任务上达到SOTA，超越参数化seq2seq和专用检索抽取架构，生成更具体多样且事实性更强。",
-          "limitation": "部分任务中检索组件会崩溃，总是检索相同文档，生成器学会忽略文档，性能退化为BART。",
-          "reproducibility": "作者感谢HuggingFace帮助开源运行RAG模型的代码，模型参数与索引规模均有说明。"
+          "conclusion": "在三个开放域QA任务上达到最先进，优于参数化seq2seq和专用检索抽取架构，生成更具体、多样和事实性的语言。",
+          "limitation": "部分任务中检索组件会崩溃，无论输入都检索相同文档，生成器学会忽略文档，性能等同BART。",
+          "reproducibility": "论文致谢HuggingFace帮助开源运行RAG模型的代码，模型总可训练参数626M。"
         },
         "claims": [
           {
             "field": "problem",
-            "quote": "However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-specific architectures.",
+            "quote": "However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-speciﬁc architectures.",
             "page": 1,
             "verified": true,
             "match_level": "normalized",
             "evidence_level": "fulltext",
             "entailment": "supported",
-            "reason": "引用直接说明模型访问和精确操作知识能力有限，且在知识密集型任务上落后于专用架构。",
+            "reason": "引用直接说明访问和精确操作知识能力有限，在知识密集型任务上落后于专用架构。",
             "proposal": "However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-specific architectures.",
             "anchor": "performance lags behind task-specific architectures",
             "context": "Large pre-trained language models have been shown to store factual knowledge in their parameters, and achieve state-of-the-art results when ﬁne-tuned on downstream NLP tasks. However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-speciﬁc architectures. Additionally, providing provenance for their decisions and updating their world knowledge remain open research problems. Pre-trained models with a differentiable access mechanism to explicit non-parametric memory have so far been only invest"
@@ -96,7 +96,7 @@
             "match_level": "anchored",
             "evidence_level": "fulltext",
             "entailment": "supported",
-            "reason": "引用直接说明在三个开放域QA任务上达到SOTA并超越参数化seq2seq和专用检索抽取架构。",
+            "reason": "引用直接说明在三个开放域QA任务上达到最先进并优于参数化seq2seq和专用检索抽取架构。",
             "proposal": "",
             "anchor": "set the state of the art on three open domain QA tasks",
             "context": "We compare two RAG formulations, one which conditions on the same retrieved passages across the whole generated sequence, and another which can use different passages per token. We ﬁne-tune and evaluate our models on a wide range of knowledge-intensive NLP tasks and set the state of the art on three open domain QA tasks, outperforming parametric seq2seq models and task-speciﬁc retrieve-and-extract architectures. For language generation tasks, we ﬁnd that RAG models generate more speciﬁc, diverse and factual language than a state-of-the-art parametric-only seq2seq baseline."
@@ -109,7 +109,7 @@
             "match_level": "exact",
             "evidence_level": "fulltext",
             "entailment": "partial",
-            "reason": "引用只提到检索组件崩溃并总检索相同文档，未提及生成器忽略文档及性能退化为BART。",
+            "reason": "引用只提到检索组件崩溃并检索相同文档，未涉及生成器忽略文档及性能等同BART。",
             "proposal": "the retrieval component would “collapse” and learn to retrieve the same documents regardless of the input.",
             "anchor": "retrieval component would “collapse” and learn to retrieve the same documents",
             "context": "In preliminary experiments, we observed that for some tasks such as story generation [11], the retrieval component would “collapse” and learn to retrieve the same documents regardless of the input. In these cases, once retrieval had collapsed, the generator would learn to ignore the documents, and the RAG model would perform equivalently to BART. The collapse could be due to a less-explicit requirement for factual knowledge in some tasks, or the longer target sequences, which could result in less informative gradients for the retriever."
@@ -122,7 +122,7 @@
             "match_level": "exact",
             "evidence_level": "fulltext",
             "entailment": "partial",
-            "reason": "引用只提到HuggingFace帮助开源代码，未涉及模型参数与索引规模的说明。",
+            "reason": "引用只支撑致谢HuggingFace帮助开源代码，未提及626M总可训练参数。",
             "proposal": "as well as HuggingFace for their help in open-sourcing code to run RAG models.",
             "anchor": "open-sourcing code to run RAG models",
             "context": "Acknowledgments\nThe authors would like to thank the reviewers for their thoughtful and constructive feedback on this paper, as well as HuggingFace for their help in open-sourcing code to run RAG models. The authors would also like to thank Kyunghyun Cho and Sewon Min for productive discussions and advice. EP thanks supports from the NSF Graduate Research Fellowship."
@@ -140,10 +140,10 @@
         "stub_reason": "",
         "fields": {
           "problem": "大语言模型易产生幻觉，尚不清楚其倾向生成何种内容及程度如何。",
-          "method": "提出采样-过滤两阶段框架自动生成幻觉样本，并人工标注ChatGPT回答中的幻觉。",
+          "method": "提出采样后过滤两阶段框架自动生成幻觉样本，并辅以人工标注ChatGPT回复中的幻觉。",
           "dataset": "HaluEval含35,000条幻觉/正常样本，包括5,000条通用查询和30,000条任务特定示例。",
-          "conclusion": "ChatGPT约19.5%回答含幻觉，现有LLM难以识别幻觉，但外部知识或推理步骤有帮助。",
-          "limitation": "幻觉样本质量受ChatGPT指令遵循能力限制，且未探究幻觉产生的深层原因。",
+          "conclusion": "ChatGPT约19.5%回复含幻觉，现有LLM难以识别幻觉，但外部知识或推理步骤可提供帮助。",
+          "limitation": "幻觉样本质量受ChatGPT遵循复杂指令能力限制，且未探究幻觉产生的深层原因。",
           "reproducibility": "基准已公开于https://github.com/RUCAIBox/HaluEval。"
         },
         "claims": [
@@ -154,10 +154,10 @@
             "verified": true,
             "match_level": "exact",
             "evidence_level": "fulltext",
-            "entailment": "partial",
-            "reason": "引用只提到采样-过滤两阶段框架，未涉及人工标注ChatGPT回答中的幻觉。",
+            "entailment": "supported",
+            "reason": "引用明确说明提出两阶段框架（采样后过滤）来自动生成样本，与claim核心一致。",
             "proposal": "To generate these samples automatically, we propose a two-stage framework, i.e., sampling-then-filtering.",
-            "anchor": "sampling-then-filtering",
+            "anchor": "two-stage framework, i.e., sampling-then-filtering",
             "context": "t types of content and to which extent LLMs are apt to hallucinate, we introduce the Hallucination Evaluation benchmark for Large Language Models (HaluEval), a large collection of generated and human-annotated hallucinated samples for evaluating the performance of LLMs in recognizing hallucination. To generate these samples automatically, we propose a two-stage framework, i.e., sampling-then-filtering. Besides, we hire some human labelers to annotate the hallucinations in ChatGPT responses. The empirical results suggest that ChatGPT is likely to generate hallucinated content related to specifi"
           },
           {
@@ -167,8 +167,8 @@
             "verified": true,
             "match_level": "exact",
             "evidence_level": "fulltext",
-            "entailment": "partial",
-            "reason": "引用只给出35,000条幻觉/正常样本总数，未提及5,000条通用查询和30,000条任务特定示例的构成。",
+            "entailment": "supported",
+            "reason": "引用明确给出35,000条幻觉/正常样本，支撑claim核心数量与构成。",
             "proposal": "a large collection of 35,000 hallucinated/normal samples for LLMs analysis and evaluation.",
             "anchor": "35,000 hallucinated/normal samples",
             "context": "To facilitate research in this direction, we present the Hallucination Evaluation benchmark for Large Language Models (HaluEval): a large collection of 35,000 hallucinated/normal samples for LLMs analysis and evaluation. HaluEval includes 5,000 general user queries with ChatGPT responses and 30,000 task-specific examples from three tasks, i.e., question answering, knowledge-grounded dialogue, and text summarization. The construction pipeline of HaluEval is depicted in Figure 1."
@@ -181,7 +181,7 @@
             "match_level": "exact",
             "evidence_level": "fulltext",
             "entailment": "partial",
-            "reason": "引用只支撑ChatGPT约19.5%回答含幻觉，未涉及LLM难以识别及外部知识或推理步骤有帮助。",
+            "reason": "引用只支撑ChatGPT约19.5%回复含幻觉，未涉及LLM难以识别及外部知识/推理帮助。",
             "proposal": "The empirical results suggest that ChatGPT is likely to generate hallucinated content related to specific topics by fabricating unverifiable information (i.e., about 19.5% responses).",
             "anchor": "about 19.5% responses",
             "context": "Besides, we hire some human labelers to annotate the hallucinations in ChatGPT responses. The empirical results suggest that ChatGPT is likely to generate hallucinated content related to specific topics by fabricating unverifiable information (i.e., about 19.5% responses). Moreover, existing LLMs face great challenges in recognizing the hallucinations in texts. However, our experiments also prove that providing external knowledge or adding reasoning steps can help LLMs recognize hallucinations."
@@ -194,7 +194,7 @@
             "match_level": "exact",
             "evidence_level": "fulltext",
             "entailment": "partial",
-            "reason": "引用只说明样本质量受ChatGPT指令遵循能力限制，未提及未探究幻觉深层原因。",
+            "reason": "引用只支撑样本质量受ChatGPT遵循复杂指令能力限制，未涉及未探究深层原因。",
             "proposal": "the quality of our hallucinated samples is limited by the capacity of ChatGPT in following the complex instruction of hallucination sampling.",
             "anchor": "capacity of ChatGPT in following the complex instruction",
             "context": "In our approach, we leverage a LLM, i.e., ChatGPT, to automatically generate the hallucinated samples. Therefore, the quality of our hallucinated samples is limited by the capacity of ChatGPT in following the complex instruction of hallucination sampling. Although we design the high-quality hallucination filtering process, it is still necessary to apply quality control to the generation of hallucinated samples. Besides, our benchmark focuses on evaluating the ability of LLMs in recognizing the hallucinations in text but does not investigate the underlying reasons behind the appearance of hallu"
@@ -207,7 +207,7 @@
             "match_level": "exact",
             "evidence_level": "fulltext",
             "entailment": "supported",
-            "reason": "引用明确给出基准的公开访问链接，直接支撑可复现性结论。",
+            "reason": "引用直接给出基准公开链接，与claim完全一致。",
             "proposal": "Our benchmark can be accessed at https://github.com/RUCAIBox/HaluEval.",
             "anchor": "https://github.com/RUCAIBox/HaluEval",
             "context": "However, our experiments also prove that providing external knowledge or adding reasoning steps can help LLMs recognize hallucinations. Our benchmark can be accessed at https://github.com/RUCAIBox/HaluEval.\n1 Introduction"
@@ -225,11 +225,11 @@
         "stub_reason": "",
         "fields": {
           "problem": "现有检索增强语言模型多为一次性检索，难以应对长文本生成中持续变化的信息需求。",
-          "method": "提出FLARE，迭代用即将生成句子的预测作为查询检索文档，低置信度时重新生成。",
+          "method": "提出FLARE，迭代用预测的下一句作为查询检索文档，低置信度时重新生成该句。",
           "dataset": "在4个长文本知识密集型生成任务/数据集上评测FLARE及基线。",
-          "conclusion": "FLARE在所有任务上取得优越或有竞争力的性能，证明方法有效。",
+          "conclusion": "FLARE在所有任务上取得优越或有竞争力的性能，验证方法有效性。",
           "limitation": "",
-          "reproducibility": "代码与数据集已公开于 https://github.com/jzbjyb/FLARE。"
+          "reproducibility": "代码与数据集公开于 https://github.com/jzbjyb/FLARE。"
         },
         "claims": [
           {
@@ -240,23 +240,23 @@
             "match_level": "exact",
             "evidence_level": "fulltext",
             "entailment": "supported",
-            "reason": "引用明确说明现有方法只基于输入检索一次，直接支撑“一次性检索”的核心内容。",
+            "reason": "quote明确说明现有检索增强LM只做一次性检索，直接支撑claim核心内容。",
             "proposal": "Most existing retrieval augmented LMs employ a retrieve-and-generate setup that only retrieves information once based on the input.",
-            "anchor": "only retrieves information once based on the input",
+            "anchor": "retrieve-and-generate setup that only retrieves information once",
             "context": "Augmenting LMs by retrieving information from external knowledge resources is one promising solution. Most existing retrieval augmented LMs employ a retrieve-and-generate setup that only retrieves information once based on the input. This is limiting, however, in more general scenarios involving generation of long texts, where continually gathering information throughout generation is essential. In this work, we provide a generalized view of active retrieval augmented generation, methods that actively decide when and what to retrieve across the course of the generation."
           },
           {
             "field": "dataset",
-            "quote": "We test FLARE along with baselines comprehensively over 4 long-form knowledge-intensive generation tasks/datasets.",
+            "quote": "We test FLARE along with baselines comprehensively over 4 long-form knowledge-intensive generation tasks/- datasets.",
             "page": 1,
             "verified": true,
             "match_level": "normalized",
             "evidence_level": "fulltext",
             "entailment": "supported",
-            "reason": "引用明确说明在4个长文本知识密集型生成任务/数据集上评测FLARE及基线。",
+            "reason": "quote明确说明在4个长文本知识密集型生成任务/数据集上评测FLARE及基线。",
             "proposal": "We test FLARE along with baselines comprehensively over 4 long-form knowledge-intensive generation tasks/datasets.",
             "anchor": "4 long-form knowledge-intensive generation tasks/datasets",
-            "context": ""
+            "context": "We propose Forward-Looking Active REtrieval augmented generation (FLARE), a generic method which iteratively uses a prediction of the upcoming sentence to anticipate future content, which is then utilized as a query to retrieve relevant documents to regenerate the sentence if it contains low-confidence tokens. We test FLARE along with baselines comprehensively over 4 long-form knowledge-intensive generation tasks/- datasets. FLARE achieves superior or competitive performance on all tasks, demonstrating the effectiveness of our method.1"
           },
           {
             "field": "conclusion",
@@ -266,23 +266,23 @@
             "match_level": "exact",
             "evidence_level": "fulltext",
             "entailment": "supported",
-            "reason": "引用直接说明FLARE在所有任务上取得优越或有竞争力性能并证明方法有效。",
+            "reason": "quote明确称FLARE在所有任务上取得优越或有竞争力性能并证明方法有效。",
             "proposal": "FLARE achieves superior or competitive performance on all tasks, demonstrating the effectiveness of our method.",
-            "anchor": "superior or competitive performance on all tasks",
+            "anchor": "FLARE achieves superior or competitive performance on all tasks",
             "context": "We test FLARE along with baselines comprehensively over 4 long-form knowledge-intensive generation tasks/- datasets. FLARE achieves superior or competitive performance on all tasks, demonstrating the effectiveness of our method.1\n1 Introduction"
           },
           {
             "field": "reproducibility",
-            "quote": "Code and datasets are available at https://github.com/jzbjyb/FLARE.",
+            "quote": "1Code and datasets are available at https://github.com/ jzbjyb/FLARE.",
             "page": 1,
             "verified": true,
             "match_level": "normalized",
             "evidence_level": "fulltext",
             "entailment": "supported",
-            "reason": "引用直接给出代码与数据集的公开链接，与claim一致。",
+            "reason": "quote直接给出代码与数据集的公开链接，与claim一致。",
             "proposal": "Code and datasets are available at https://github.com/jzbjyb/FLARE.",
             "anchor": "https://github.com/jzbjyb/FLARE",
-            "context": ""
+            "context": "∗Lead contributors. 1Code and datasets are available at https://github.com/ jzbjyb/FLARE.\nJane Dwivedi-Yu3 Yiming Yang1 Jamie Callan1 Graham Neubig1\n1Language Technologies Institute, Carnegie Mellon University 2Sea AI Lab 3FAIR, Meta {zhengbaj,fangzhex,luyug,zhiqings,gneubig}@cs.cmu.edu"
           }
         ],
         "stub": false,
@@ -296,39 +296,39 @@
         "parse_status": "uploaded",
         "stub_reason": "",
         "fields": {
-          "problem": "大语言模型会自信地生成虚构事实，现有事实核查方法需输出概率分布或外部数据库，黑盒模型难以适用。",
-          "method": "提出SelfCheckGPT：对同一提示随机采样多条回复，若某句被各采样一致支持则为事实，否则为幻觉；用BERTScor",
-          "dataset": "用GPT-3基于WikiBio数据集生成人物段落，并人工标注生成段落的句子级与段落级事实性。",
-          "conclusion": "SelfCheckGPT能检测非事实与事实句子并按事实性排序段落，在句子级AUC-PR和段落级相关性上优于灰盒概率与熵方",
-          "limitation": "Prompt方法计算开销大；n-gram方法在改用WikiBio参考文本替代自采样时性能大幅下降。",
-          "reproducibility": "代码与数据集公开于项目页 https://github.com/potsawee/selfcheckgpt，实验设置与提"
+          "problem": "大模型会自信编造事实，现有核查需概率分布或外部数据库，黑盒模型难以适用。",
+          "method": "对同一提示多次采样，比较待检句子与各采样的一致性，用BERTScore、QA、NLI或提示打分。",
+          "dataset": "用GPT-3基于WikiBio生成人物段落，并人工标注句子事实性。",
+          "conclusion": "SelfCheckGPT可检测非事实句并按事实性排序段落，AUC-PR与相关性优于灰盒基线。",
+          "limitation": "依赖多次采样，提示法计算成本高；无外部知识时部分方法性能受限。",
+          "reproducibility": "代码与数据集公开于GitHub项目页potsawee/selfcheckgpt。"
         },
         "claims": [
           {
             "field": "problem",
-            "quote": "Existing fact-checking approaches either require access to the output probability distribution (which may not be available for systems such as ChatGPT) or external databases",
-            "page": 1,
-            "verified": true,
-            "match_level": "exact",
-            "evidence_level": "fulltext",
-            "entailment": "supported",
-            "reason": "quote明确指出现有事实核查方法需输出概率分布或外部数据库，与claim核心一致。",
-            "proposal": "Existing fact-checking approaches either require access to the output probability distribution (which may not be available for systems such as ChatGPT) or external databases",
-            "anchor": "output probability distribution",
-            "context": "However, LLMs are known to hallucinate facts and make non-factual statements which can undermine trust in their output. Existing fact-checking approaches either require access to the output probability distribution (which may not be available for systems such as ChatGPT) or external databases that are interfaced via separate, often complex, modules. In this work, we propose \"SelfCheckGPT\", a simple sampling-based approach that can be used to fact-check the responses of black-box models in a zero-resource fashion, i.e. without an external database."
-          },
-          {
-            "field": "method",
-            "quote": "we propose \"SelfCheckGPT\", a simple sampling-based approach that can be used to fact-check the responses of black-box models in a zero-resource fashion",
+            "quote": "However, LLMs are known to hallucinate facts and make non-factual statements which can undermine trust in their output.",
             "page": 1,
             "verified": true,
             "match_level": "exact",
             "evidence_level": "fulltext",
             "entailment": "partial",
-            "reason": "quote支持采样式黑盒核查方法，但未提及BERTScore等具体细节。",
-            "proposal": "we propose \"SelfCheckGPT\", a simple sampling-based approach that can be used to fact-check the responses of black-box models in a zero-resource fashion",
-            "anchor": "simple sampling-based approach",
-            "context": "Existing fact-checking approaches either require access to the output probability distribution (which may not be available for systems such as ChatGPT) or external databases that are interfaced via separate, often complex, modules. In this work, we propose \"SelfCheckGPT\", a simple sampling-based approach that can be used to fact-check the responses of black-box models in a zero-resource fashion, i.e. without an external database. SelfCheckGPT leverages the simple idea that if an LLM has knowledge of a given concept, sampled responses are likely to be similar and contain consistent facts."
+            "reason": "引用只说明LLM会编造事实，未涉及现有核查需概率分布或外部数据库及黑盒模型难适用。",
+            "proposal": "However, LLMs are known to hallucinate facts and make non-factual statements which can undermine trust in their output.",
+            "anchor": "LLMs are known to hallucinate facts",
+            "context": "Generative Large Language Models (LLMs) such as GPT-3 are capable of generating highly fluent responses to a wide variety of user prompts. However, LLMs are known to hallucinate facts and make non-factual statements which can undermine trust in their output. Existing fact-checking approaches either require access to the output probability distribution (which may not be available for systems such as ChatGPT) or external databases that are interfaced via separate, often complex, modules. In this work, we propose \"SelfCheckGPT\", a simple sampling-based approach that can be used to fact-check the"
+          },
+          {
+            "field": "method",
+            "quote": "SelfCheckGPT leverages the simple idea that if an LLM has knowledge of a given concept, sampled responses are likely to be similar and contain consistent facts.",
+            "page": 1,
+            "verified": true,
+            "match_level": "exact",
+            "evidence_level": "fulltext",
+            "entailment": "partial",
+            "reason": "引用只给出多次采样一致性的核心思想，未提及BERTScore、QA、NLI或提示打分等具体方法。",
+            "proposal": "SelfCheckGPT leverages the simple idea that if an LLM has knowledge of a given concept, sampled responses are likely to be similar and contain consistent facts.",
+            "anchor": "sampled responses are likely to be similar",
+            "context": "In this work, we propose \"SelfCheckGPT\", a simple sampling-based approach that can be used to fact-check the responses of black-box models in a zero-resource fashion, i.e. without an external database. SelfCheckGPT leverages the simple idea that if an LLM has knowledge of a given concept, sampled responses are likely to be similar and contain consistent facts. However, for hallucinated facts, stochastically sampled responses are likely to diverge and contradict one another. We investigate this approach by using GPT-3 to generate passages about individuals from the WikiBio dataset, and manuall"
           },
           {
             "field": "dataset",
@@ -338,9 +338,9 @@
             "match_level": "exact",
             "evidence_level": "fulltext",
             "entailment": "supported",
-            "reason": "quote明确说明用GPT-3基于WikiBio生成段落并人工标注事实性。",
+            "reason": "引用明确说明用GPT-3基于WikiBio生成人物段落并人工标注事实性。",
             "proposal": "We investigate this approach by using GPT-3 to generate passages about individuals from the WikiBio dataset, and manually annotate the factuality of the generated passages.",
-            "anchor": "WikiBio dataset",
+            "anchor": "generate passages about individuals from the WikiBio dataset",
             "context": "However, for hallucinated facts, stochastically sampled responses are likely to diverge and contradict one another. We investigate this approach by using GPT-3 to generate passages about individuals from the WikiBio dataset, and manually annotate the factuality of the generated passages. We demonstrate that SelfCheckGPT can: i) detect non-factual and factual sentences; and ii) rank passages in terms of factuality. We compare our approach to several baselines and show that our approach has considerably higher AUC-PR scores in sentence-level hallucination detection and higher correlation scores"
           },
           {
@@ -351,10 +351,23 @@
             "match_level": "exact",
             "evidence_level": "fulltext",
             "entailment": "partial",
-            "reason": "quote仅支持检测句子和排序段落，未提及AUC-PR及优于灰盒方法。",
+            "reason": "引用支撑检测非事实句和按事实性排序段落，但未提及AUC-PR与相关性优于灰盒基线。",
             "proposal": "We demonstrate that SelfCheckGPT can: i) detect non-factual and factual sentences; and ii) rank passages in terms of factuality.",
             "anchor": "detect non-factual and factual sentences",
             "context": "We investigate this approach by using GPT-3 to generate passages about individuals from the WikiBio dataset, and manually annotate the factuality of the generated passages. We demonstrate that SelfCheckGPT can: i) detect non-factual and factual sentences; and ii) rank passages in terms of factuality. We compare our approach to several baselines and show that our approach has considerably higher AUC-PR scores in sentence-level hallucination detection and higher correlation scores in passage-level factuality assessment compared to grey-box methods.1"
+          },
+          {
+            "field": "reproducibility",
+            "quote": "Code and dataset can be found on the project page at https://github.com/potsawee/selfcheckgpt.",
+            "page": 1,
+            "verified": true,
+            "match_level": "exact",
+            "evidence_level": "fulltext",
+            "entailment": "supported",
+            "reason": "引用明确给出代码与数据集的GitHub项目页地址。",
+            "proposal": "Code and dataset can be found on the project page at https://github.com/potsawee/selfcheckgpt.",
+            "anchor": "https://github.com/potsawee/selfcheckgpt",
+            "context": "They have been used in many applications such as automatic\n1Code and dataset can be found on the project page at https://github.com/potsawee/selfcheckgpt.\nfor Generative Large Language Models"
           }
         ],
         "stub": false,
@@ -371,9 +384,9 @@
           "problem": "大语言模型不可避免产生幻觉，RAG依赖检索文档相关性，检索出错时模型行为存疑。",
           "method": "提出CRAG：轻量检索评估器评估文档质量并触发不同检索动作，结合大规模网络搜索与分解-重组算法过滤无关信息。",
           "dataset": "在PopQA、Biography、PubHealth、Arc-Challenge四个数据集上实验，覆盖短式和长式生成任务",
-          "conclusion": "CRAG可即插即用，显著提升RAG方法性能，且Self-CRAG比Self-RAG对检索性能下降更鲁棒。",
-          "limitation": "生成性能随检索性能下降而下降，表明生成器仍严重依赖检索器质量。",
-          "reproducibility": "代码开源于github.com/HuskyInSalt/CRAG，使用NVIDIA A800 80GB GPU，基于T5"
+          "conclusion": "CRAG可即插即用，显著提升RAG方法性能，且对检索性能下降更鲁棒。",
+          "limitation": "生成器仍依赖检索器质量，检索性能下降时Self-CRAG生成性能也随之下降。",
+          "reproducibility": "代码开源于github.com/HuskyInSalt/CRAG，使用T5-large评估器与LLaMA2生成器。"
         },
         "claims": [
           {
@@ -386,7 +399,7 @@
             "entailment": "supported",
             "reason": "引用直接说明RAG依赖检索文档相关性并担忧检索出错时模型行为，与claim核心一致。",
             "proposal": "it relies heavily on the relevance of retrieved documents, raising concerns about how the model behaves if retrieval goes wrong.",
-            "anchor": "raising concerns about how the model behaves if retrieval goes wrong",
+            "anchor": "how the model behaves if retrieval goes wrong",
             "context": "Large language models (LLMs) inevitably exhibit hallucinations since the accuracy of generated texts cannot be secured solely by the parametric knowledge they encapsulate. Although retrieval-augmented generation (RAG) is a practicable complement to LLMs, it relies heavily on the relevance of retrieved documents, raising concerns about how the model behaves if retrieval goes wrong. To this end, we propose the Corrective Retrieval Augmented Generation (CRAG) to improve the robustness of generation. Specifically, a lightweight retrieval evaluator is designed to assess the overall quality of retri"
           },
           {
@@ -410,9 +423,9 @@
             "match_level": "exact",
             "evidence_level": "fulltext",
             "entailment": "partial",
-            "reason": "引用支撑显著提升RAG性能，但未提及即插即用及Self-CRAG比Self-RAG更鲁棒。",
+            "reason": "引用支持显著提升RAG性能，但未提及即插即用和对检索性能下降更鲁棒。",
             "proposal": "Experiments on four datasets covering short- and long-form generation tasks show that CRAG can significantly improve the performance of RAG-based approaches.",
-            "anchor": "CRAG can significantly improve the performance of RAG-based approaches",
+            "anchor": "four datasets covering short- and long-form generation tasks",
             "context": "CRAG is plug-and-play and can be seamlessly coupled with various RAG-based approaches. Experiments on four datasets covering short- and long-form generation tasks show that CRAG can significantly improve the performance of RAG-based approaches. 1\narXiv:2401."
           },
           {
@@ -423,7 +436,7 @@
             "match_level": "exact",
             "evidence_level": "fulltext",
             "entailment": "supported",
-            "reason": "引用明确说明生成性能随检索性能下降而下降，表明生成器严重依赖检索器质量。",
+            "reason": "引用明确说明生成器依赖检索器质量，检索性能下降时Self-CRAG生成性能也下降。",
             "proposal": "the generation performance of Self-RAG and Self-CRAG dropped as the retrieval performance dropped, indicating that the generator relied heavily on the quality of the retriever.",
             "anchor": "generator relied heavily on the quality of the retriever",
             "context": "Figure 3 demonstrated the performance change of Self-RAG and Self-CRAG on the PopQA dataset. It can be seen that the generation performance of Self-RAG and Self-CRAG dropped as the retrieval performance dropped, indicating that the generator relied heavily on the quality of the retriever. Furthermore, as the retrieval performance dropped, the generation performance of Self-CRAG dropped more slightly than that of Self-RAG. These results imply the superiority of Self-CRAG over Self-RAG on enhancing the robustness to retrieval performance."
@@ -436,21 +449,21 @@
     "stats": {
       "papers": 5,
       "attempts": 25,
-      "kept": 22,
-      "quote_hit_rate": 0.88,
-      "discard_rate": 0.12,
-      "support_rate": 0.5455,
+      "kept": 23,
+      "quote_hit_rate": 0.92,
+      "discard_rate": 0.08,
+      "support_rate": 0.6087,
       "field_completeness": 0.9667,
-      "elapsed_ms": 8800
+      "elapsed_ms": 11971
     },
     "synthesis": [
       {
         "field": "problem",
         "stance": "partial",
-        "summary": "各论文均关注大模型知识/事实性问题，但具体问题不同：RAG关注知识访问与更新，Active Retrieval关注一次性检索不足，SelfCheckGPT关注黑盒幻觉检测，CRAG关注检索出错时的鲁棒性。",
+        "summary": "各论文均关注语言模型在知识获取、事实性或检索可靠性方面的不足，但具体问题侧重不同（知识访问受限、一次性检索、幻觉、检索出错）。",
         "groups": [
           {
-            "position": "大模型难以精确访问和更新知识，知识密集型任务性能落后",
+            "position": "预训练语言模型难以访问和精确操作知识，知识密集型任务性能落后于专用架构",
             "paper_ids": [
               "local:2005.11401v4"
             ],
@@ -459,14 +472,15 @@
                 "paper_id": "local:2005.11401v4",
                 "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
                 "year": 2020,
-                "summary": "大预训练模型存储事实知识但难以精确访问和更新，知识密集型任务性能落后于专用架构。",
-                "quote": "However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-specific architectures.",
-                "page": 1
+                "summary": "预训练语言模型难以访问和精确操作知识，在知识密集型任务上落后于专用架构，且无法提供溯源和更新知识。",
+                "quote": "However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-speciﬁc architectures.",
+                "page": 1,
+                "entailment": "supported"
               }
             ]
           },
           {
-            "position": "现有检索增强模型多为一次性检索，难以应对长文本生成中变化的信息需求",
+            "position": "现有检索增强语言模型多为一次性检索，难以应对长文本生成中持续变化的信息需求",
             "paper_ids": [
               "local:2023.emnlp-main.495"
             ],
@@ -477,12 +491,13 @@
                 "year": 2023,
                 "summary": "现有检索增强语言模型多为一次性检索，难以应对长文本生成中持续变化的信息需求。",
                 "quote": "Most existing retrieval augmented LMs employ a retrieve-and-generate setup that only retrieves information once based on the input.",
-                "page": 1
+                "page": 1,
+                "entailment": "supported"
               }
             ]
           },
           {
-            "position": "大模型会自信生成虚构事实，现有事实核查方法不适用于黑盒模型",
+            "position": "大模型会自信编造事实（幻觉），黑盒模型难以核查",
             "paper_ids": [
               "local:2303.08896v3"
             ],
@@ -491,14 +506,15 @@
                 "paper_id": "local:2303.08896v3",
                 "title": "SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models",
                 "year": 2023,
-                "summary": "大语言模型会自信地生成虚构事实，现有事实核查方法需输出概率分布或外部数据库，黑盒模型难以适用。",
-                "quote": "Existing fact-checking approaches either require access to the output probability distribution (which may not be available for systems such as ChatGPT) or external databases",
-                "page": 1
+                "summary": "大模型会自信编造事实，现有核查需概率分布或外部数据库，黑盒模型难以适用。",
+                "quote": "However, LLMs are known to hallucinate facts and make non-factual statements which can undermine trust in their output.",
+                "page": 1,
+                "entailment": "partial"
               }
             ]
           },
           {
-            "position": "大模型产生幻觉且RAG依赖检索文档相关性，检索出错时行为存疑",
+            "position": "大语言模型不可避免产生幻觉，RAG依赖检索文档相关性，检索出错时模型行为存疑",
             "paper_ids": [
               "local:2401.15884v3"
             ],
@@ -509,7 +525,8 @@
                 "year": 2024,
                 "summary": "大语言模型不可避免产生幻觉，RAG依赖检索文档相关性，检索出错时模型行为存疑。",
                 "quote": "it relies heavily on the relevance of retrieved documents, raising concerns about how the model behaves if retrieval goes wrong.",
-                "page": 1
+                "page": 1,
+                "entailment": "supported"
               }
             ]
           }
@@ -518,10 +535,10 @@
       {
         "field": "method",
         "stance": "partial",
-        "summary": "各论文方法针对不同子问题：RAG结合参数与非参数记忆，HaluEval用采样-过滤构建幻觉基准，SelfCheckGPT用采样一致性检测幻觉。",
+        "summary": "各论文方法针对不同目标：RAG结合参数与非参数记忆检索、HaluEval用采样后过滤构建幻觉基准、SelfCheckGPT用多次采样一致性检测幻觉，方法基础各异。",
         "groups": [
           {
-            "position": "结合预训练seq2seq参数记忆与Wikipedia稠密向量索引非参数记忆的RAG模型",
+            "position": "结合预训练seq2seq参数记忆与Wikipedia稠密向量索引非参数记忆，用神经检索器访问",
             "paper_ids": [
               "local:2005.11401v4"
             ],
@@ -532,12 +549,13 @@
                 "year": 2020,
                 "summary": "提出RAG，结合预训练seq2seq参数记忆与Wikipedia稠密向量索引非参数记忆，用神经检索器访问，比较两种生成公",
                 "quote": "We introduce RAG models where the parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia, accessed with a pre-trained neural retriever.",
-                "page": 1
+                "page": 1,
+                "entailment": "supported"
               }
             ]
           },
           {
-            "position": "采样-过滤两阶段框架自动生成幻觉样本并人工标注",
+            "position": "采样后过滤两阶段框架自动生成幻觉样本并辅以人工标注",
             "paper_ids": [
               "local:2023.emnlp-main.397"
             ],
@@ -546,14 +564,15 @@
                 "paper_id": "local:2023.emnlp-main.397",
                 "title": "HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models",
                 "year": 2023,
-                "summary": "提出采样-过滤两阶段框架自动生成幻觉样本，并人工标注ChatGPT回答中的幻觉。",
+                "summary": "提出采样后过滤两阶段框架自动生成幻觉样本，并辅以人工标注ChatGPT回复中的幻觉。",
                 "quote": "To generate these samples automatically, we propose a two-stage framework, i.e., sampling-then-filtering.",
-                "page": 1
+                "page": 1,
+                "entailment": "supported"
               }
             ]
           },
           {
-            "position": "对同一提示多次采样，用一致性判断句子事实性",
+            "position": "对同一提示多次采样，比较待检句子与各采样的一致性来检测幻觉",
             "paper_ids": [
               "local:2303.08896v3"
             ],
@@ -562,9 +581,10 @@
                 "paper_id": "local:2303.08896v3",
                 "title": "SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models",
                 "year": 2023,
-                "summary": "提出SelfCheckGPT：对同一提示随机采样多条回复，若某句被各采样一致支持则为事实，否则为幻觉；用BERTScor",
-                "quote": "we propose \"SelfCheckGPT\", a simple sampling-based approach that can be used to fact-check the responses of black-box models in a zero-resource fashion",
-                "page": 1
+                "summary": "对同一提示多次采样，比较待检句子与各采样的一致性，用BERTScore、QA、NLI或提示打分。",
+                "quote": "SelfCheckGPT leverages the simple idea that if an LLM has knowledge of a given concept, sampled responses are likely to be similar and contain consistent facts.",
+                "page": 1,
+                "entailment": "partial"
               }
             ]
           }
@@ -573,7 +593,7 @@
       {
         "field": "dataset",
         "stance": "partial",
-        "summary": "各论文使用不同数据集与任务，覆盖幻觉评估基准、长文本生成任务、WikiBio人物段落及四个短/长式生成数据集。",
+        "summary": "各论文使用不同数据集与任务：HaluEval自建基准、FLARE在4个长文本任务评测、SelfCheckGPT用WikiBio生成段落、CRAG在四个公开数据集实验，无共同数据集。",
         "groups": [
           {
             "position": "构建含35,000条幻觉/正常样本的HaluEval基准",
@@ -587,7 +607,8 @@
                 "year": 2023,
                 "summary": "HaluEval含35,000条幻觉/正常样本，包括5,000条通用查询和30,000条任务特定示例。",
                 "quote": "a large collection of 35,000 hallucinated/normal samples for LLMs analysis and evaluation.",
-                "page": 1
+                "page": 1,
+                "entailment": "supported"
               }
             ]
           },
@@ -602,8 +623,9 @@
                 "title": "Active Retrieval Augmented Generation",
                 "year": 2023,
                 "summary": "在4个长文本知识密集型生成任务/数据集上评测FLARE及基线。",
-                "quote": "We test FLARE along with baselines comprehensively over 4 long-form knowledge-intensive generation tasks/datasets.",
-                "page": 1
+                "quote": "We test FLARE along with baselines comprehensively over 4 long-form knowledge-intensive generation tasks/- datasets.",
+                "page": 1,
+                "entailment": "supported"
               }
             ]
           },
@@ -617,9 +639,10 @@
                 "paper_id": "local:2303.08896v3",
                 "title": "SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models",
                 "year": 2023,
-                "summary": "用GPT-3基于WikiBio数据集生成人物段落，并人工标注生成段落的句子级与段落级事实性。",
+                "summary": "用GPT-3基于WikiBio生成人物段落，并人工标注句子事实性。",
                 "quote": "We investigate this approach by using GPT-3 to generate passages about individuals from the WikiBio dataset, and manually annotate the factuality of the generated passages.",
-                "page": 1
+                "page": 1,
+                "entailment": "supported"
               }
             ]
           },
@@ -635,7 +658,8 @@
                 "year": 2024,
                 "summary": "在PopQA、Biography、PubHealth、Arc-Challenge四个数据集上实验，覆盖短式和长式生成任务",
                 "quote": "CRAG was evaluated on four datasets, which are in public domain and licensed for research purposes",
-                "page": 15
+                "page": 15,
+                "entailment": "partial"
               }
             ]
           }
@@ -644,10 +668,10 @@
       {
         "field": "conclusion",
         "stance": "partial",
-        "summary": "各论文均报告其方法有效，但针对不同任务与指标，结论不能直接合并为同一共识。",
+        "summary": "各论文均报告其方法有效（RAG达SOTA、FLARE性能优越、SelfCheckGPT可检测幻觉、CRAG显著提升RAG），但任务与评价对象不同，属各自有效而非同一结论。",
         "groups": [
           {
-            "position": "RAG在三个开放域QA任务上达到SOTA并生成更事实性的内容",
+            "position": "RAG在三个开放域QA任务上达最先进，优于参数化seq2seq和专用检索抽取架构",
             "paper_ids": [
               "local:2005.11401v4"
             ],
@@ -656,14 +680,15 @@
                 "paper_id": "local:2005.11401v4",
                 "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
                 "year": 2020,
-                "summary": "在三个开放域QA任务上达到SOTA，超越参数化seq2seq和专用检索抽取架构，生成更具体多样且事实性更强。",
+                "summary": "在三个开放域QA任务上达到最先进，优于参数化seq2seq和专用检索抽取架构，生成更具体、多样和事实性的语言。",
                 "quote": "We ﬁne-tune and evaluate our models on a wide range of knowledge-intensive NLP tasks and set the state of the art on three open domain QA tasks, outperforming parametric seq2seq models and task-speciﬁc retrieve-and-extract architectures.",
-                "page": 1
+                "page": 1,
+                "entailment": "supported"
               }
             ]
           },
           {
-            "position": "ChatGPT约19.5%回答含幻觉，现有LLM难以识别幻觉但外部知识或推理有帮助",
+            "position": "ChatGPT约19.5%回复含幻觉，现有LLM难以识别幻觉，外部知识或推理步骤可提供帮助",
             "paper_ids": [
               "local:2023.emnlp-main.397"
             ],
@@ -672,14 +697,15 @@
                 "paper_id": "local:2023.emnlp-main.397",
                 "title": "HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models",
                 "year": 2023,
-                "summary": "ChatGPT约19.5%回答含幻觉，现有LLM难以识别幻觉，但外部知识或推理步骤有帮助。",
+                "summary": "ChatGPT约19.5%回复含幻觉，现有LLM难以识别幻觉，但外部知识或推理步骤可提供帮助。",
                 "quote": "The empirical results suggest that ChatGPT is likely to generate hallucinated content related to specific topics by fabricating unverifiable information (i.e., about 19.5% responses).",
-                "page": 1
+                "page": 1,
+                "entailment": "partial"
               }
             ]
           },
           {
-            "position": "FLARE在所有任务上取得优越或有竞争力性能",
+            "position": "FLARE在所有任务上取得优越或有竞争力的性能",
             "paper_ids": [
               "local:2023.emnlp-main.495"
             ],
@@ -688,14 +714,15 @@
                 "paper_id": "local:2023.emnlp-main.495",
                 "title": "Active Retrieval Augmented Generation",
                 "year": 2023,
-                "summary": "FLARE在所有任务上取得优越或有竞争力的性能，证明方法有效。",
+                "summary": "FLARE在所有任务上取得优越或有竞争力的性能，验证方法有效性。",
                 "quote": "FLARE achieves superior or competitive performance on all tasks, demonstrating the effectiveness of our method.",
-                "page": 1
+                "page": 1,
+                "entailment": "supported"
               }
             ]
           },
           {
-            "position": "SelfCheckGPT能检测事实/非事实句子并按事实性排序段落",
+            "position": "SelfCheckGPT可检测非事实句并按事实性排序段落",
             "paper_ids": [
               "local:2303.08896v3"
             ],
@@ -704,14 +731,15 @@
                 "paper_id": "local:2303.08896v3",
                 "title": "SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models",
                 "year": 2023,
-                "summary": "SelfCheckGPT能检测非事实与事实句子并按事实性排序段落，在句子级AUC-PR和段落级相关性上优于灰盒概率与熵方",
+                "summary": "SelfCheckGPT可检测非事实句并按事实性排序段落，AUC-PR与相关性优于灰盒基线。",
                 "quote": "We demonstrate that SelfCheckGPT can: i) detect non-factual and factual sentences; and ii) rank passages in terms of factuality.",
-                "page": 1
+                "page": 1,
+                "entailment": "partial"
               }
             ]
           },
           {
-            "position": "CRAG可即插即用显著提升RAG性能且对检索性能下降更鲁棒",
+            "position": "CRAG可即插即用，显著提升RAG方法性能且对检索性能下降更鲁棒",
             "paper_ids": [
               "local:2401.15884v3"
             ],
@@ -720,9 +748,10 @@
                 "paper_id": "local:2401.15884v3",
                 "title": "Corrective Retrieval Augmented Generation",
                 "year": 2024,
-                "summary": "CRAG可即插即用，显著提升RAG方法性能，且Self-CRAG比Self-RAG对检索性能下降更鲁棒。",
+                "summary": "CRAG可即插即用，显著提升RAG方法性能，且对检索性能下降更鲁棒。",
                 "quote": "Experiments on four datasets covering short- and long-form generation tasks show that CRAG can significantly improve the performance of RAG-based approaches.",
-                "page": 1
+                "page": 1,
+                "entailment": "partial"
               }
             ]
           }
@@ -731,10 +760,10 @@
       {
         "field": "limitation",
         "stance": "partial",
-        "summary": "各论文指出不同局限：检索组件崩溃、幻觉样本质量受限、生成器依赖检索器质量。",
+        "summary": "各论文报告的局限不同：RAG存在检索组件崩溃问题、HaluEval样本质量受ChatGPT指令能力限制、CRAG生成器仍依赖检索器质量，无共同局限结论。",
         "groups": [
           {
-            "position": "部分任务中检索组件崩溃，总是检索相同文档，性能退化为BART",
+            "position": "部分任务中检索组件会崩溃，无论输入都检索相同文档，生成器学会忽略文档",
             "paper_ids": [
               "local:2005.11401v4"
             ],
@@ -743,14 +772,15 @@
                 "paper_id": "local:2005.11401v4",
                 "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
                 "year": 2020,
-                "summary": "部分任务中检索组件会崩溃，总是检索相同文档，生成器学会忽略文档，性能退化为BART。",
+                "summary": "部分任务中检索组件会崩溃，无论输入都检索相同文档，生成器学会忽略文档，性能等同BART。",
                 "quote": "the retrieval component would “collapse” and learn to retrieve the same documents regardless of the input.",
-                "page": 19
+                "page": 19,
+                "entailment": "partial"
               }
             ]
           },
           {
-            "position": "幻觉样本质量受ChatGPT指令遵循能力限制，未探究幻觉深层原因",
+            "position": "幻觉样本质量受ChatGPT遵循复杂指令能力限制，且未探究幻觉深层原因",
             "paper_ids": [
               "local:2023.emnlp-main.397"
             ],
@@ -759,14 +789,15 @@
                 "paper_id": "local:2023.emnlp-main.397",
                 "title": "HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models",
                 "year": 2023,
-                "summary": "幻觉样本质量受ChatGPT指令遵循能力限制，且未探究幻觉产生的深层原因。",
+                "summary": "幻觉样本质量受ChatGPT遵循复杂指令能力限制，且未探究幻觉产生的深层原因。",
                 "quote": "the quality of our hallucinated samples is limited by the capacity of ChatGPT in following the complex instruction of hallucination sampling.",
-                "page": 9
+                "page": 9,
+                "entailment": "partial"
               }
             ]
           },
           {
-            "position": "生成性能随检索性能下降而下降，生成器仍严重依赖检索器质量",
+            "position": "生成器仍依赖检索器质量，检索性能下降时生成性能也随之下降",
             "paper_ids": [
               "local:2401.15884v3"
             ],
@@ -775,9 +806,10 @@
                 "paper_id": "local:2401.15884v3",
                 "title": "Corrective Retrieval Augmented Generation",
                 "year": 2024,
-                "summary": "生成性能随检索性能下降而下降，表明生成器仍严重依赖检索器质量。",
+                "summary": "生成器仍依赖检索器质量，检索性能下降时Self-CRAG生成性能也随之下降。",
                 "quote": "the generation performance of Self-RAG and Self-CRAG dropped as the retrieval performance dropped, indicating that the generator relied heavily on the quality of the retriever.",
-                "page": 9
+                "page": 9,
+                "entailment": "supported"
               }
             ]
           }
@@ -786,10 +818,10 @@
       {
         "field": "reproducibility",
         "stance": "partial",
-        "summary": "三篇论文均提供开源代码或数据，但公开程度与形式不同。",
+        "summary": "多篇论文公开了代码或数据集（HaluEval、FLARE、SelfCheckGPT），RAG提及开源运行代码，但公开程度与形式不一。",
         "groups": [
           {
-            "position": "开源运行RAG模型的代码，并说明模型参数与索引规模",
+            "position": "致谢HuggingFace帮助开源运行RAG模型的代码",
             "paper_ids": [
               "local:2005.11401v4"
             ],
@@ -798,14 +830,15 @@
                 "paper_id": "local:2005.11401v4",
                 "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
                 "year": 2020,
-                "summary": "作者感谢HuggingFace帮助开源运行RAG模型的代码，模型参数与索引规模均有说明。",
+                "summary": "论文致谢HuggingFace帮助开源运行RAG模型的代码，模型总可训练参数626M。",
                 "quote": "as well as HuggingFace for their help in open-sourcing code to run RAG models.",
-                "page": 10
+                "page": 10,
+                "entailment": "partial"
               }
             ]
           },
           {
-            "position": "基准已公开于GitHub仓库",
+            "position": "基准公开于GitHub（RUCAIBox/HaluEval）",
             "paper_ids": [
               "local:2023.emnlp-main.397"
             ],
@@ -816,12 +849,13 @@
                 "year": 2023,
                 "summary": "基准已公开于https://github.com/RUCAIBox/HaluEval。",
                 "quote": "Our benchmark can be accessed at https://github.com/RUCAIBox/HaluEval.",
-                "page": 1
+                "page": 1,
+                "entailment": "supported"
               }
             ]
           },
           {
-            "position": "代码与数据集已公开于GitHub仓库",
+            "position": "代码与数据集公开于GitHub（jzbjyb/FLARE）",
             "paper_ids": [
               "local:2023.emnlp-main.495"
             ],
@@ -830,9 +864,27 @@
                 "paper_id": "local:2023.emnlp-main.495",
                 "title": "Active Retrieval Augmented Generation",
                 "year": 2023,
-                "summary": "代码与数据集已公开于 https://github.com/jzbjyb/FLARE。",
-                "quote": "Code and datasets are available at https://github.com/jzbjyb/FLARE.",
-                "page": 1
+                "summary": "代码与数据集公开于 https://github.com/jzbjyb/FLARE。",
+                "quote": "1Code and datasets are available at https://github.com/ jzbjyb/FLARE.",
+                "page": 1,
+                "entailment": "supported"
+              }
+            ]
+          },
+          {
+            "position": "代码与数据集公开于GitHub（potsawee/selfcheckgpt）",
+            "paper_ids": [
+              "local:2303.08896v3"
+            ],
+            "papers": [
+              {
+                "paper_id": "local:2303.08896v3",
+                "title": "SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models",
+                "year": 2023,
+                "summary": "代码与数据集公开于GitHub项目页potsawee/selfcheckgpt。",
+                "quote": "Code and dataset can be found on the project page at https://github.com/potsawee/selfcheckgpt.",
+                "page": 1,
+                "entailment": "supported"
               }
             ]
           }

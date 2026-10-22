@@ -8,6 +8,7 @@ import httpx
 
 from .. import config
 from ..models import FIELD_NAMES
+from .llm import LLMCallError, with_retry
 from .parse import detect_language
 
 _SENT_SPLIT = re.compile(r"(?<=[.!?。！？；;])\s+")
@@ -84,7 +85,8 @@ def _llm(pages: list[str], abstract: str, paper_title: str):
         "temperature": 0.0,
     }
     headers = {"Authorization": f"Bearer {config.LLM_API_KEY}"}
-    try:
+
+    def _post():
         resp = httpx.post(
             f"{config.LLM_BASE_URL}/chat/completions",
             json=payload,
@@ -92,10 +94,16 @@ def _llm(pages: list[str], abstract: str, paper_title: str):
             timeout=config.HTTP_TIMEOUT * 3,
         )
         resp.raise_for_status()
-        data = resp.json()["choices"][0]["message"]["content"]
-        obj = json.loads(data)
-    except Exception:  # noqa: BLE001
-        return None, [], [], False, False
+        data = resp.json()
+        return data["choices"][0]["message"]["content"], (data.get("usage") or {})
+
+    try:
+        content, _usage = with_retry(_post, "抽取")
+        obj = json.loads(content)
+    except LLMCallError:
+        raise
+    except (ValueError, TypeError) as exc:
+        raise LLMCallError("模型抽取返回格式错误，请重试") from exc
 
     fields = {f: str(obj.get(f, ""))[:60] for f in FIELD_NAMES}
     quotes = []
@@ -118,6 +126,4 @@ def extract_fields_and_quotes(pages: list[str], paper: dict):
     if config.DEMO_MODE or not config.llm_configured():
         return _stub(pages, paper.get("abstract", ""))
     res = _llm(pages, paper.get("abstract", ""), paper.get("title", ""))
-    if res[0] is None:
-        return _stub(pages, paper.get("abstract", ""))
     return res

@@ -18,6 +18,13 @@ LEVEL_ZH = {"exact": "精确匹配", "normalized": "归一化匹配", "anchored"
 EVIDENCE_ZH = {"fulltext": "全文证据", "abstract": "摘要级证据"}
 
 
+def _display_field(row, field: str) -> str:
+    value = row.fields.get(field, "")
+    if not value:
+        return ""
+    return value if any(c.field == field and c.verified for c in row.claims) else "未找到原文出处"
+
+
 def _flat_rows(matrix: Matrix) -> list[dict]:
     rows = []
     for r in matrix.rows:
@@ -28,7 +35,7 @@ def _flat_rows(matrix: Matrix) -> list[dict]:
             "language": r.language,
         }
         for f in FIELD_NAMES:
-            row[FIELD_LABEL_ZH[f]] = r.fields.get(f, "")
+            row[FIELD_LABEL_ZH[f]] = _display_field(r, f)
         row["引用数"] = len(r.claims)
         row["引用明细"] = " | ".join(
             f"[{FIELD_LABEL_ZH.get(c.field, c.field)}] 第{c.page}页 {c.quote}" for c in r.claims
@@ -71,7 +78,7 @@ def export_matrix(matrix: Matrix, out_dir) -> dict:
         doc.add_heading(r.title, level=1)
         for f in FIELD_NAMES:
             if r.fields.get(f):
-                doc.add_paragraph(f"{FIELD_LABEL_ZH[f]}：{r.fields[f]}")
+                doc.add_paragraph(f"{FIELD_LABEL_ZH[f]}：{_display_field(r, f)}")
         for c in r.claims:
             doc.add_paragraph(
                 f"引用（{FIELD_LABEL_ZH.get(c.field, c.field)}，第 {c.page} 页，"

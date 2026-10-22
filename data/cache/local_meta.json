@@ -3,30 +3,78 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
     "year": 2020,
     "source": "arxiv",
-    "mtime": 1792239130.693785
+    "mtime": 1792648929.802884
   },
   "2023.emnlp-main.397": {
     "title": "HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models",
     "year": 2023,
     "source": "aclanthology",
-    "mtime": 1792239417.2067606
+    "mtime": 1792648933.4296753
   },
   "2023.emnlp-main.495": {
     "title": "Active Retrieval Augmented Generation",
     "year": 2023,
     "source": "aclanthology",
-    "mtime": 1792239214.9790196
+    "mtime": 1792648936.4503443
   },
   "2303.08896v3": {
     "title": "SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models",
     "year": 2023,
     "source": "arxiv",
-    "mtime": 1792239462.44743
+    "mtime": 1792648937.53033
   },
   "2401.15884v3": {
     "title": "Corrective Retrieval Augmented Generation",
     "year": 2024,
     "source": "arxiv",
-    "mtime": 1792239355.222808
+    "mtime": 1792648938.627575
+  },
+  "same-a239d708": {
+    "title": "same-a239d708",
+    "year": null,
+    "source": "filename",
+    "mtime": 1792650247.363879
+  },
+  "same-95720da9": {
+    "title": "same-95720da9",
+    "year": null,
+    "source": "filename",
+    "mtime": 1792650247.5601032
+  },
+  "same-1723fda4": {
+    "title": "same-1723fda4",
+    "year": null,
+    "source": "filename",
+    "mtime": 1792651538.3700862
+  },
+  "same-6f6e4093": {
+    "title": "same-6f6e4093",
+    "year": null,
+    "source": "filename",
+    "mtime": 1792651538.5483747
+  },
+  "same-007a2b17": {
+    "title": "same-007a2b17",
+    "year": null,
+    "source": "filename",
+    "mtime": 1792651873.700889
+  },
+  "same-6820d85e": {
+    "title": "same-6820d85e",
+    "year": null,
+    "source": "filename",
+    "mtime": 1792651873.8612833
+  },
+  "same-9e2b0657": {
+    "title": "same-9e2b0657",
+    "year": null,
+    "source": "filename",
+    "mtime": 1792652548.5729063
+  },
+  "same-6037c18c": {
+    "title": "same-6037c18c",
+    "year": null,
+    "source": "filename",
+    "mtime": 1792652548.7501469
   }
 }

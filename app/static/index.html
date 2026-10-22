@@ -4,22 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>有据 CiteProof — 可验证的文献证据矩阵</title>
-  <link rel="stylesheet" href="/static/style.css?v=14">
+  <link rel="stylesheet" href="/static/style.css?v=17">
 </head>
-<body>
+<body class="light">
   <header>
     <div class="brand">有据 · <span>CiteProof</span></div>
     <div class="sub">可验证的文献证据矩阵</div>
     <div class="head-right">
       <div id="health" class="health">检查中…</div>
-      <button id="theme-btn" class="ghost">浅色</button>
+      <button id="theme-btn" class="ghost">深色</button>
     </div>
   </header>
 
   <main>
     <section id="hero" class="card hero">
       <h1>读文献，只信有据可查的结论</h1>
-      <p class="hero-sub">自动检索论文，AI 抽取结论并逐字校验，核不上原文不上屏</p>
+      <p class="hero-sub">自动检索论文，定位原文证据，并区分已核验与未找到出处的概括</p>
       <div class="steps">
         <div class="step"><div class="step-num">1</div><div class="step-t">检索论文</div></div>
         <div class="arrow">→</div>
@@ -81,6 +81,13 @@
     </section>
 
     <section class="card hidden" id="matrix-card">
+      <div id="matrix-legend" class="matrix-legend">
+        <span class="lg-label">图例：</span>
+        <span class="lg-item"><i class="lg-dot supported"></i>支持</span>
+        <span class="lg-item"><i class="lg-dot partial"></i>部分支持</span>
+        <span class="lg-item"><i class="lg-dot unsupported"></i>不支持</span>
+        <span class="lg-item"><i class="lg-cell"></i>未找到原文出处（程序未在原文定位到引用，该概括不作为已核验结论）</span>
+      </div>
       <div id="synthesis" class="synthesis"></div>
       <div class="table-wrap"><table id="matrix"></table></div>
     </section>
@@ -95,6 +102,6 @@
     <div id="drawer-body"></div>
   </aside>
 
-  <script src="/static/app.js?v=14"></script>
+  <script src="/static/app.js?v=18"></script>
 </body>
 </html>

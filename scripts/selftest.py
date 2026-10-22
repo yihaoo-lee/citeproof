@@ -79,9 +79,9 @@ def test_verify() -> None:
 def test_synthesis() -> None:
     rows = [
         {"paper_id": "p1", "title": "A", "year": 2024, "fields": {"conclusion": "甲"},
-         "claims": [{"field": "conclusion", "quote": "quote A", "verified": True, "page": 1}]},
+         "claims": [{"field": "conclusion", "quote": "quote A", "verified": True, "entailment": "supported", "page": 1}]},
         {"paper_id": "p2", "title": "B", "year": 2025, "fields": {"conclusion": "乙"},
-         "claims": [{"field": "conclusion", "quote": "quote B", "verified": True, "page": 2}]},
+         "claims": [{"field": "conclusion", "quote": "quote B", "verified": True, "entailment": "supported", "page": 2}]},
     ]
     ev = collect_evidence(rows, "conclusion")
     assert len(ev) == 2 and ev[0]["quote"] == "quote A", "证据聚合应基于已验证 quote"

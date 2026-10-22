@@ -48,8 +48,14 @@ def main() -> int:
 
     cache_dir = PROJECT_ROOT / "data" / "cache"
     cache_dir.mkdir(parents=True, exist_ok=True)
+    cached_papers = []
+    for paper in papers:
+        cached = dict(paper)
+        path = Path(cached["pdf_path"])
+        cached["pdf_path"] = str(path.relative_to(PROJECT_ROOT)) if path.is_relative_to(PROJECT_ROOT) else path.name
+        cached_papers.append(cached)
     (cache_dir / "demo.json").write_text(
-        json.dumps({"query": query, "papers": papers, "matrix": best}, ensure_ascii=False, indent=2),
+        json.dumps({"query": query, "papers": cached_papers, "matrix": best}, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
 

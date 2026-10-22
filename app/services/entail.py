@@ -6,6 +6,7 @@ import json
 import httpx
 
 from .. import config
+from .llm import LLMCallError, with_retry
 
 
 def judge_claims(items: list[dict]) -> list[dict]:
@@ -35,7 +36,8 @@ def judge_claims(items: list[dict]) -> list[dict]:
         "temperature": 0.0,
     }
     headers = {"Authorization": f"Bearer {config.LLM_API_KEY}"}
-    try:
+
+    def _post():
         resp = httpx.post(
             f"{config.LLM_BASE_URL}/chat/completions",
             json=payload,
@@ -43,10 +45,16 @@ def judge_claims(items: list[dict]) -> list[dict]:
             timeout=config.HTTP_TIMEOUT * 3,
         )
         resp.raise_for_status()
-        content = resp.json()["choices"][0]["message"]["content"]
+        data = resp.json()
+        return data["choices"][0]["message"]["content"], (data.get("usage") or {})
+
+    try:
+        content, _usage = with_retry(_post, "语义复审")
         arr = (json.loads(content) or {}).get("judgements") or []
-    except Exception:  # noqa: BLE001
-        return [{"id": it["id"], "entailment": "", "reason": ""} for it in items]
+    except LLMCallError:
+        raise
+    except (ValueError, TypeError) as exc:
+        raise LLMCallError("模型语义复审返回格式错误，请重试") from exc
 
     verdicts = {}
     for r in arr:

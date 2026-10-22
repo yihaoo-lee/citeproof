@@ -25,6 +25,20 @@ def normalize(text: str) -> str:
     return text.casefold()
 
 
+def _normalized_with_positions(text: str) -> tuple[str, list[int]]:
+    """Return normalized text and the source offset for each output character."""
+    chars = []
+    positions = []
+    for index, char in enumerate(text):
+        if char in {"\u00ad", "-"} or char.isspace():
+            continue
+        for normalized in unicodedata.normalize("NFKC", char).casefold():
+            if normalized not in {"\u00ad", "-"} and not normalized.isspace():
+                chars.append(normalized)
+                positions.append(index)
+    return "".join(chars), positions
+
+
 def _looks_like_table(s: str) -> bool:
     """启发式识别表格碎片：竖线分隔、连续数字、标点列表、大写字词堆叠、中文顿号列表。"""
     if "|" in s:
@@ -149,13 +163,24 @@ def locate_quote(pages: list[str], quote: str) -> dict | None:
     qn = normalize(quote)
     for i, page in enumerate(pages, start=1):
         cp = _collapse(page)
-        if qn in normalize(page):
-            if not _looks_like_table(q):
-                idx = cp.find(q)
-                if idx < 0:
-                    idx = cp.casefold().find(q.casefold())
-                ctx = _context_around(cp, idx, len(q)) if idx >= 0 else None
-                return {"page": i, "level": "normalized", "quote": q, "context": ctx}
+        offset = 0
+        for segment in cp.split(PARA):
+            normalized, positions = _normalized_with_positions(segment)
+            idx = normalized.find(qn) if qn else -1
+            if idx >= 0:
+                start = offset + positions[idx]
+                end = offset + positions[idx + len(qn) - 1] + 1
+                actual = cp[start:end]
+                sentence = _expand_sentence(cp, start)
+                if (normalize(actual) == qn and qn in normalize(sentence)
+                        and not _looks_like_table(sentence)):
+                    return {
+                        "page": i,
+                        "level": "normalized",
+                        "quote": sentence,
+                        "context": _context_around(cp, start, len(sentence)),
+                    }
+            offset += len(segment) + 1
     return None
 
 

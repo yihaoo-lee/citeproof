@@ -4,17 +4,17 @@ const FIELD_LABEL = { problem: "问题", method: "方法", dataset: "数据集",
 const LEVEL_LABEL = { exact: "精确匹配", normalized: "归一化匹配", anchored: "锚点定位" };
 const STANCE_LABEL = { consensus: "共识", partial: "部分共识", conflict: "分歧", insufficient: "证据不足" };
 const PAGE_SIZE = 10;
-const EXAMPLE_POOL = [
-  "大模型幻觉检测", "检索增强生成", "AI 智能体", "思维链推理", "多模态对齐",
-  "代码生成", "知识图谱", "低资源语言处理", "大模型评测", "科学文献挖掘",
-  "文献综述自动生成", "指令微调", "大语言模型安全", "图神经网络", "扩散模型",
-  "推荐系统", "文本生成质量评估", "大模型推理加速", "零样本学习", "检索式问答",
+const EXAMPLES = [
+  "大语言模型幻觉检测",
+  "检索增强生成中的知识更新",
+  "医学问答的事实一致性",
 ];
 
 let papers = [];
 let selected = new Set();
 let page = 1;
 let matrix = null;
+let currentJobId = null;
 let searched = false;
 let debounceTimer = null;
 
@@ -32,9 +32,17 @@ async function api(path, body) {
   return r.json();
 }
 
-function setStatus(msg, isError) {
-  $("status").textContent = msg;
-  $("status").classList.toggle("error", !!isError);
+function setStatus(msg, isError, retry) {
+  const status = $("status");
+  status.textContent = msg;
+  status.classList.toggle("error", !!isError);
+  if (retry) {
+    const button = document.createElement("button");
+    button.className = "ghost retry-btn";
+    button.textContent = "重试";
+    button.onclick = analyze;
+    status.appendChild(button);
+  }
 }
 
 async function health() {
@@ -48,7 +56,10 @@ async function health() {
 }
 
 function applyTheme() {
-  if (localStorage.getItem("theme") === "light") {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.remove("light");
+    $("theme-btn").textContent = "浅色";
+  } else {
     document.body.classList.add("light");
     $("theme-btn").textContent = "深色";
   }
@@ -84,7 +95,7 @@ async function search() {
     page = 1;
     renderResults();
     const fb = data.fallback ? "（OpenAlex 不稳定，已切换 arXiv 兜底）" : "";
-    setStatus(`检索到 ${papers.length} 篇${fb}，勾选要分析的论文`);
+    setStatus(papers.length ? `检索到 ${papers.length} 篇${fb}，勾选要分析的论文` : "没有检索到论文，请换一个关键词重试", !papers.length);
   } catch (e) {
     setStatus(e.message, true);
   }
@@ -180,14 +191,16 @@ async function analyze() {
   if (!chosen.length) { setStatus("请先勾选至少一篇论文", true); return; }
   $("analyze-btn").disabled = true;
   try {
-    const resp = await api("/api/analyze", { query: $("query").value.trim() || "（未命名检索）", papers: chosen });
+    const resp = await api("/api/analyze", { query: $("query").value.trim() || "（未命名检索）", papers: chosen.map((p) => ({ id: p.id })) });
     if (resp.error) throw new Error(resp.error);
     if (!resp.job_id) throw new Error("任务创建失败");
     await pollJob(resp.job_id);
+    currentJobId = resp.job_id;
     renderMatrix();
-    setStatus("完成");
+    const failures = matrix.rows.filter((row) => ["scanned_or_empty", "download_failed", "failed"].some((s) => (row.parse_status || "").startsWith(s))).length;
+    setStatus(failures ? `完成；${failures} 篇 PDF 下载或解析失败，结果可能仅基于摘要` : "完成", !!failures);
   } catch (e) {
-    setStatus(e.message, true);
+    setStatus(e.message, true, !!e.retryable);
   } finally {
     $("analyze-btn").disabled = false;
   }
@@ -197,7 +210,11 @@ async function pollJob(id) {
   while (true) {
     const j = await api("/api/job/" + id);
     if (j.status === "done") { matrix = j.result; return; }
-    if (j.status === "error") { throw new Error(j.error || "分析失败"); }
+    if (j.status === "error") {
+      const error = new Error(j.error || "分析失败，请重试");
+      error.retryable = true;
+      throw error;
+    }
     const label = j.stage === "prepare" ? "正在下载/解析" : "正在校验";
     setStatus(`${label}第 ${j.done}/${j.total} 篇…`);
     await new Promise((r) => setTimeout(r, 800));
@@ -249,7 +266,11 @@ function renderMatrix() {
       td.className = "field";
       const val = row.fields[f] || "";
       const claims = (row.claims || []).filter((c) => c.field === f);
-      if (val) {
+      if (val && !claims.length) {
+        td.classList.add("unverified");
+        td.textContent = "未找到原文出处";
+        td.title = "程序未能在 PDF 原文中定位到对应引用，该概括不作为已核验结论";
+      } else if (val) {
         const preview = document.createElement("div");
         preview.className = "cell-preview";
         preview.textContent = val;
@@ -260,8 +281,11 @@ function renderMatrix() {
         td.textContent = "—";
       }
       if (claims.length) {
+        const entailment = claims[0].entailment || "unjudged";
+        td.classList.add("evidence-" + entailment);
+        td.title = { supported: "原文支持该概括", partial: "原文仅部分支持该概括", unsupported: "原文不支持该概括", unjudged: "语义支持尚未判定" }[entailment] || "语义支持尚未判定";
         const dot = document.createElement("span");
-        dot.className = "dot";
+        dot.className = "dot " + entailment;
         td.appendChild(dot);
         if (claims.length > 1) {
           const cnt = document.createElement("span");
@@ -520,6 +544,12 @@ function renderSynthesis() {
           const pt = document.createElement("div");
           pt.className = "synth-ptitle";
           pt.textContent = `${p.title}${p.year ? " (" + p.year + ")" : ""}`;
+          if (p.entailment) {
+            const pill = document.createElement("span");
+            pill.className = "pill " + p.entailment;
+            pill.textContent = p.entailment === "partial" ? "部分支持" : "支持";
+            pt.appendChild(pill);
+          }
           const q = document.createElement("div");
           q.className = "synth-quote";
           q.textContent = "“" + p.quote + "”";
@@ -671,6 +701,15 @@ function openDrawer(row, field) {
       q.appendChild(ctxBtn);
       q.appendChild(ctxBox);
     }
+    if (row.paper_id && c.page) {
+      const pdfLink = document.createElement("a");
+      pdfLink.className = "pdf-link";
+      pdfLink.href = "/api/pdf/" + encodeURIComponent(row.paper_id) + "#page=" + c.page;
+      pdfLink.target = "_blank";
+      pdfLink.rel = "noopener";
+      pdfLink.textContent = "打开原文 PDF（第 " + c.page + " 页）";
+      q.appendChild(pdfLink);
+    }
     body.appendChild(q);
   });
   $("drawer").classList.remove("hidden");
@@ -735,6 +774,7 @@ async function loadDemo() {
     const data = await api("/api/demo");
     if (data.error) { setStatus(data.error, true); return; }
     matrix = data;
+    currentJobId = "demo";
     renderMatrix();
     setStatus("已加载离线演示缓存");
   } catch (e) {
@@ -756,7 +796,7 @@ function renderExamples() {
   hint.className = "hint";
   hint.textContent = "试试：";
   box.appendChild(hint);
-  [...EXAMPLE_POOL].sort(() => Math.random() - 0.5).slice(0, 3).forEach((q) => {
+  EXAMPLES.forEach((q) => {
     const chip = document.createElement("button");
     chip.className = "chip";
     chip.textContent = q;
@@ -773,7 +813,7 @@ function debouncedReSearch() {
 }
 
 document.querySelectorAll(".export-row button").forEach((b) => {
-  b.onclick = () => { if (matrix) window.location = "/api/export?format=" + b.dataset.fmt; };
+  b.onclick = () => { if (matrix && currentJobId) window.location = "/api/export?format=" + b.dataset.fmt + "&job_id=" + encodeURIComponent(currentJobId); };
 });
 $("search-btn").onclick = search;
 $("local-btn").onclick = loadLocal;

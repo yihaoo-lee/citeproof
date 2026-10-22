@@ -109,6 +109,7 @@ button:hover { filter: brightness(1.1); }
 
 .status { margin-top: 12px; color: var(--accent); font-size: 13px; min-height: 18px; }
 .status.error { color: var(--bad); }
+.retry-btn { margin-left: 10px; padding: 4px 10px; }
 
 .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
 .stat { text-align: center; }
@@ -169,11 +170,22 @@ td.paper { font-weight: 600; }
 td.field { cursor: pointer; position: relative; }
 td.field:hover { background: var(--panel-2); }
 td.empty { color: var(--muted); font-style: italic; }
+td.unverified { color: var(--muted); cursor: default; }
+td.evidence-partial .dot { background: var(--warn); }
+td.evidence-unsupported .dot { background: var(--bad); }
+td.evidence-unjudged .dot { background: var(--muted); }
 .cell-preview { max-width: 180px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
 .dot {
   position: absolute; top: 6px; right: 6px; width: 7px; height: 7px; border-radius: 50%;
   background: var(--good);
 }
+.matrix-legend { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+.lg-label { color: var(--muted); }
+.lg-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
+.lg-dot.supported { background: var(--good); }
+.lg-dot.partial { background: var(--warn); }
+.lg-dot.unsupported { background: var(--bad); }
+.lg-cell { display: inline-block; width: 12px; height: 12px; border: 1px solid var(--line); background: var(--panel-2); border-radius: 2px; margin-right: 4px; }
 .count { position: absolute; bottom: 5px; right: 6px; font-size: 10px; color: var(--good); }
 .src { color: var(--muted); font-size: 12px; }
 
@@ -207,6 +219,8 @@ td.empty { color: var(--muted); font-style: italic; }
 .ctx-toggle { margin-top: 6px; font-size: 12px; padding: 4px 10px; }
 .ctx { margin-top: 8px; background: var(--panel-2); border-radius: 6px; padding: 10px 12px; font-size: 13px; line-height: 1.7; }
 .ctx-mark { background: var(--mark); color: var(--text); padding: 0 2px; border-radius: 2px; }
+.pdf-link { display: block; margin-top: 8px; font-size: 12px; color: var(--accent); text-decoration: none; }
+.pdf-link:hover { text-decoration: underline; }
 .pill { display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 999px; margin-right: 6px; }
 .pill.supported { background: rgba(52,211,153,.15); color: var(--good); }
 .pill.partial { background: rgba(251,191,36,.15); color: var(--warn); }

@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from .. import config
 from ..models import Claim, FIELD_NAMES, Matrix, MatrixRow, Stats
 from .entail import judge_claims
-from .extract import extract_fields_and_quotes
+from .extract import LLMCallError, extract_fields_and_quotes
 from .verify import _valid_anchor, locate_anchor, locate_quote, normalize
 
 
@@ -125,6 +125,8 @@ def build_matrix(query: str, papers: list[dict], progress=None, concurrency: int
             i = futures[fut]
             try:
                 results[i] = fut.result()
+            except LLMCallError:
+                raise
             except Exception:  # noqa: BLE001
                 p = papers[i]
                 results[i] = (

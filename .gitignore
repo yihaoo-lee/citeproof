@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 .env
 data/cache/*.pdf
+data/cache/analysis_*.json
 data/cache/pool/
 data/papers/*.pdf
 data/tmp/
